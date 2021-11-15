@@ -22,7 +22,6 @@
 .container__text {
   border: 1px solid blue;
   align-self: center;
-  direction: ltr;
 }
 
 .container__img {
