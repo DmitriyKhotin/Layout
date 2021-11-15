@@ -3,3 +3,29 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.container__content {
+  display: flex;
+  align-items: center;
+  height: 400px;
+}
+
+.container__content:nth-child(2n+1) {
+  flex-direction: row-reverse;
+}
+
+.container__text {
+  border: 1px solid blue;
+}
+
+.container__img {
+  height: 100%;
+  width: 400px;
+  border: 1px solid green;
+}
+
+@media (max-width: 599px) {
+  .container__content:nth-child(n) {
+    flex-direction: column;
+  }
+}
