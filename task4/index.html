@@ -9,6 +9,66 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="carousel">
+        <button class="carousel__button carousel__buttonLeft"><<</button>
+        <div class="carousel__wrapper">
+            <div class="carousel__container">
+                <div class="carousel__item element" style="background-image: url(./assets/Communication@2x.jpg)">
+                    <p class="element__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus alias aliquam, blanditiis consequuntur deserunt dolore inventore itaque officia placeat provident quod quos unde ut voluptas? Eveniet natus quo soluta.Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus alias aliquam, blanditiis consequuntur deserunt dolore inventore itaque officia placeat provident quod quos unde ut voluptas? Eveniet natus quo soluta.Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus alias aliquam, blanditiis consequuntur deserunt dolore inventore itaque officia placeat provident quod quos unde ut voluptas? Eveniet natus quo soluta.</p>
+                </div>
+                <div class="carousel__item element" style="background-image: url(./assets/EndlessAisle@2x.jpg)">
+                    <p class="element__text">natus quo soluta.</p>
+                </div>
+                <div class="carousel__item element" style="background-image: url(./assets/SalesAssist@2x.jpg)">
+                    <p class="element__text">Третья фотка</p>
+                </div>
+                <div class="carousel__item element" style="background-image: url(./assets/StaffEmpowerment@2x.jpg)">
+                    <p class="element__text">Четвертая фотка</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel__button carousel__buttonRight">>></button>
+    </div>
+    <script>
+        const carousel = document.querySelector('.carousel');
+        const carouselContainer = document.querySelector('.carousel__container');
+        let position = 0;
+        const width = 449;
+        const MAX_WIDTH = -1347;
 
+        let intervalId = setInterval(() => slideToRight(), 2000);
+
+        carousel.addEventListener('mouseover', () => {
+          clearInterval(intervalId);
+        }, {once: true})
+
+        document.querySelector('.carousel__buttonRight').onclick = slideToRight;
+
+        document.querySelector('.carousel__buttonLeft').onclick = slideToLeft;
+
+        function draw() {
+          carouselContainer.style.marginLeft = position + 'px';
+        }
+
+        function slideToLeft() {
+          if (position) {
+            position = position + width;
+          } else {
+            position = MAX_WIDTH;
+          }
+
+          draw();
+        }
+
+        function slideToRight() {
+          if (position === MAX_WIDTH) {
+            position = 0;
+          } else {
+            position = position - width;
+          }
+
+          draw();
+        }
+    </script>
 </body>
 </html>

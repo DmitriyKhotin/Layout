@@ -3,3 +3,61 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.carousel {
+  margin: 100px auto;
+  height: 400px;
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+.carousel__button {
+  cursor: pointer;
+  outline: none;
+  border-radius: 50%;
+  padding: 10px;
+  border: 1px solid silver;
+  background-color: white;
+}
+
+.carousel__wrapper {
+  width: 450px;
+  height: 380px;
+  margin: 0 10px;
+  padding: 28px 0;
+  overflow: hidden;
+}
+
+.carousel__container {
+  display: flex;
+  width: 5000px;
+  height: 320px;
+  transition-property: margin-left;
+  transition-duration: 2s;
+  transition-timing-function: ease;
+}
+
+.carousel__item {
+  width: 449px;
+  height: 320px;
+}
+
+.element {
+  position: relative;
+  border-radius: 16px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.element__text {
+  background-color: antiquewhite;
+  width: 160px;
+  height: 100px;
+  overflow: hidden;
+  position: absolute;
+  bottom: -20px;
+  right: 100px;
+}
