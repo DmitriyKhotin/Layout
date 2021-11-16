@@ -33,8 +33,23 @@
         const carousel = document.querySelector('.carousel');
         const carouselContainer = document.querySelector('.carousel__container');
         let position = 0;
-        const width = 449;
-        const MAX_WIDTH = -1347;
+
+        const {innerWidth, innerHeight} = window;
+
+        const conf = {
+          _width: 449,
+          get width() {
+            return this._width;
+          },
+          set width(newValue) {
+            position = 0;
+            draw();
+            this._width = newValue;
+          },
+          get MAX_WIDTH() {
+            return this.width * -3;
+          }
+        }
 
         let intervalId = setInterval(() => slideToRight(), 2000);
 
@@ -46,29 +61,52 @@
 
         document.querySelector('.carousel__buttonLeft').onclick = slideToLeft;
 
+        function calculateSize(innerWidth, innerHeight) {
+          if (innerWidth < 520 || innerHeight < 370) {
+            conf.width = 202;
+            return
+          }
+
+          if (innerWidth < 700 || innerHeight < 450) {
+            conf.width = 400;
+            return
+          }
+
+          conf.width = 449;
+        }
+
+        calculateSize(innerWidth, innerHeight);
+
         function draw() {
           carouselContainer.style.marginLeft = position + 'px';
         }
 
         function slideToLeft() {
           if (position) {
-            position = position + width;
+            position = position + conf.width;
           } else {
-            position = MAX_WIDTH;
+            position = conf.MAX_WIDTH;
           }
 
           draw();
         }
 
         function slideToRight() {
-          if (position === MAX_WIDTH) {
+          console.log(conf.width)
+          if (position === conf.MAX_WIDTH) {
             position = 0;
           } else {
-            position = position - width;
+            position = position - conf.width;
           }
 
           draw();
         }
+
+        window.addEventListener('resize', function (event) {
+          const { innerHeight, innerWidth } = event.target;
+
+          calculateSize(innerWidth, innerHeight);
+        })
     </script>
 </body>
 </html>
