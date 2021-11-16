@@ -3,3 +3,122 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.container {
+  height: 1000px;
+  background: silver;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  height: 50px;
+  width: 100%;
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  transition-property: height;
+  transition-timing-function: ease;
+  transition-duration: 100ms;
+}
+
+.header__logo {
+  height: 40px;
+  width: 100px;
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 4px;
+}
+
+.header__item {
+  display: inline-block;
+  font-size: 16px;
+}
+
+.header__item:first-child:hover > .dropdown__container{
+  display: block;
+}
+
+.header__item:first-child > p {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.header__item > p {
+  padding: 16px;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown__container {
+  position: absolute;
+  display: none;
+  list-style: none;
+  width: 100%;
+  background-color: white;
+  border: 1px solid black;
+  border-top: none;
+}
+
+.dropdow__item {
+  cursor: pointer;
+  padding: 12px 16px;
+}
+
+.dropdow__item:hover {
+  background-color: #e3e2e2;
+}
+
+.isSticky {
+  height: 30px;
+  background-color: black;
+  color: white;
+}
+
+.isSticky .header__logo {
+  width: 50px;
+  height: 20px;
+  background-color: white;
+}
+
+.isSticky .header__item > p {
+  padding: 6px 16px;
+}
+
+.isSticky .header__item:first-child > p {
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
+
+.isSticky .dropdown__container {
+  position: absolute;
+  background-color: black;
+  border: 1px solid white;
+  border-top: none;
+}
+
+@media (max-width: 399px) {
+  .header__logo {
+    height: 32px;
+    width: 80px;
+  }
+
+  .header__item > p {
+    padding: 16px 12px;
+  }
+
+  .isSticky .header__item > p {
+    padding: 6px 12px;
+  }
+
+
+  .dropdow__item {
+    cursor: pointer;
+    padding: 12px 12px;
+  }
+}

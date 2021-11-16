@@ -9,6 +9,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <header class="header">
+            <img class="header__logo" src="../task1/assets/Nike.svg" alt="Nike">
+            <nav class="header__nav">
+                <div class="header__item dropdown">
+                    <p>menu item1</p>
+                    <ul class="dropdown__container">
+                        <li class="dropdow__item">List 1</li>
+                        <li class="dropdow__item">List 2</li>
+                        <li class="dropdow__item">List 3</li>
+                    </ul>
+                </div>
+                <div class="header__item">
+                    <p>menu item2</p>
+                </div>
+            </nav>
+        </header>
+    <script>
+        const header = document.querySelector(".header");
+        window.addEventListener('scroll', function (event) {
+          console.warn()
+          header.classList.add('isSticky');
 
+          if (!window.scrollY) {
+            header.classList.remove('isSticky');
+          }
+        })
+    </script>
+    </div>
 </body>
 </html>
