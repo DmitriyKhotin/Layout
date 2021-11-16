@@ -3,3 +3,23 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.header {
+  height: 40px;
+  display: flex;
+  padding: 16px;
+  background-color: red;
+}
+
+.header > div {
+  margin: 0 10px;
+}
+
+.block{
+  height: 400px;
+  scroll-behavior: smooth;
+  margin: 20px 0;
+  border: 1px solid black;
+  background-color: silver;
+}
+

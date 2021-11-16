@@ -9,6 +9,39 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    <div class="container">
+        <header class="header">
+            <div><a href="#block1">block1</a></div>
+            <div><a href="#block5">block5</a></div>
+        </header>
+        <div id="block1" class="block">
+            <p>block1</p>
+        </div>
+        <div class="block">
+            <p>block2</p>
+        </div>
+        <div class="block">
+            <p>block3</p>
+        </div>
+        <div class="block">
+            <p>block4</p>
+        </div>
+        <div id="block5" class="block">
+            <p>block5</p>
+        </div>
+    </div>
+    <script>
+        const header = document.querySelector('.header');
+        header.addEventListener('click', function (event) {
+          event.preventDefault();
+          const target = event.target;
+          if (target.tagName === 'A') {
+            window.scrollTo({
+              top: document.querySelector(target.hash).offsetTop,
+              behavior: "smooth"
+            })
+          }
+        })
+    </script>
 </body>
 </html>
