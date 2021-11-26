@@ -3,3 +3,17 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.block {
+  background-image: url("./assets/section-4-back@2x.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+  border: 1px solid black;
+}
+
+@media (max-width: 600px) {
+  .block {
+    background-position-x: -135px;
+  }
+}

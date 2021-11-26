@@ -3,3 +3,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.logo {
+  filter: invert(65%) sepia(69%) saturate(4095%) hue-rotate(135deg) brightness(89%) contrast(101%);
+}

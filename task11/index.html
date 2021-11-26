@@ -7,8 +7,207 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 <body>
+    <div class="container">
+        <div>
+            <img style="transform: translateX(0)" class="screen screen-1" src="assets/sáreen-1.jpg" alt="screen-1">
+        </div>
+        <div>
+            <img style="transform: translateX(100vw)" class="screen screen-2" src="assets/screen-2.jpg" alt="screen-2">
+        </div>
+        <div>
+            <img class="screen screen-3" src="assets/screen-3.jpg" alt="screen-3">
+            <div class="layer-3">
+                <p class="dialog firstDialog">Hang coat here</p>
+                <p class="dialog secondDialog">Place shoes here</p>
+            </div>
+        </div>
+    </div>
+    <div class="overlay">
+        <img class="layer layer-1" src="assets/layer-1.png">
+        <img class="layer layer-2" src="assets/layer-2.png">
+    </div>
+    <div class="bubble" id="bubbleOuter">
+    </div>
+    <div class="bubble" id="bubbleIn">
+    </div>
+    <script>
+      const firstScreen = document.querySelector('.screen-1');
+      const secondScreen = document.querySelector('.screen-2');
+      const thirdScreen = document.querySelector('.screen-3');
 
+      const layerFirst = document.querySelector('.layer-1');
+      const layerSecond = document.querySelector('.layer-2');
+
+      const bubbleOuter = document.getElementById('bubbleOuter');
+      const bubbleIn = document.getElementById('bubbleIn');
+
+      document.body.addEventListener('click', animate)
+
+      firstScreen.addEventListener('click', () => {
+        console.log('click firstscreen')
+        anime({
+          targets: [firstScreen, secondScreen],
+          translateX: '-=100vw',
+          delay: 400,
+          duration: 500,
+          easing: 'linear',
+        })
+      })
+
+      secondScreen.addEventListener('click', () => {
+        anime({
+          targets: thirdScreen,
+          zIndex: 0,
+          duration: 400
+        })
+      })
+
+      thirdScreen.addEventListener('click', () => {
+        const tl = anime.timeline();
+
+        tl.add({
+          targets: '.overlay',
+          zIndex: {
+            value: 1,
+            duration: 0,
+          },
+          backgroundColor: 'rgba(85,85,85,0.7)',
+          duration: 400,
+          easing: 'linear'
+        })
+        .add({
+          targets: '.layer-1',
+          top: ['100%', '50%'],
+          translateX: ['-50%', '-50%'],
+          translateY: [0, '-50%'],
+          duration: 300,
+          easing: 'linear'
+        }, 700)
+      })
+
+      layerFirst.addEventListener('click', () => {
+        anime({
+          targets: '.layer-2',
+          top: ['100%', '50%'],
+          translateX: ['-50%', '-50%'],
+          translateY: [0, '-50%'],
+          duration: 300,
+          delay: 200,
+          easing: 'linear'
+        })
+      })
+
+      layerSecond.addEventListener('click', () => {
+        const tl = anime.timeline();
+
+        tl
+          .add({
+            targets: '.overlay',
+            opacity: {
+              value: [1, 0],
+              duration: 400,
+            },
+            delay: 300,
+            easing: 'linear'
+          })
+          .add({
+            targets: '.layer-3',
+            zIndex: {
+              value: [-1, 0],
+              duration: 0,
+            },
+            opacity: {
+              value: [0.3, 1],
+              duration: 300,
+              easing: 'linear'
+            },
+          })
+        .add({
+          targets: '.secondDialog',
+          scale: {
+            value: [0, 1],
+            duration: 1000,
+            easing: 'linear'
+          },
+        }, 700)
+          .add({
+          targets: '.firstDialog',
+          scale: {
+            value: [0, 1],
+            duration: 1000,
+            easing: 'linear'
+          },
+        }, 1700)
+      })
+
+      function animate(event) {
+        console.log('click body')
+        bubbleOuter.style.top = event.pageY + 'px';
+        bubbleOuter.style.left = event.pageX + 'px';
+
+        bubbleIn.style.top = event.pageY + 'px';
+        bubbleIn.style.left = event.pageX + 'px';
+
+        const tl = anime.timeline();
+
+        tl
+          .add({
+            targets: bubbleOuter,
+            height: [
+              { value: 40, duration: 200 },
+              { value: 120, duration: 300 },
+              { value: 0, duration: 0 }
+            ],
+            width: [
+              { value: 40, duration: 200 },
+              { value: 120, duration: 300 },
+              { value: 0, duration: 0 },
+            ],
+            backgroundColor: [
+              { value: '#C0C0C0', duration: 0 },
+              { value: '#C0C0C0', duration: 200 },
+              { value: 'rgba(0, 0, 0, 0)', duration: 0 },
+              { value: 'rgba(0, 0, 0, 0)', duration: 300 },
+            ],
+            border: [
+              { value: '0px solid silver', duration: 200 },
+              { value: '20px solid silver', duration: 0 },
+              { value: '0px solid silver', duration: 300 },
+            ],
+            easing: 'linear',
+            duration: 500,
+          })
+          .add({
+            targets: bubbleIn,
+            height: [
+              { value: 40, duration: 200 },
+              { value: 120, duration: 200 },
+              { value: 0, duration: 0 }
+            ],
+            width: [
+              { value: 40, duration: 200 },
+              { value: 120, duration: 200 },
+              { value: 0, duration: 0 },
+            ],
+            backgroundColor: [
+              { value: '#597b64', duration: 0 },
+              { value: '#597b64', duration: 200 },
+              { value: 'rgba(0, 0, 0, 0)', duration: 0 },
+              { value: 'rgba(0, 0, 0, 0)', duration: 200 },
+            ],
+            border: [
+              { value: '0px solid #597b64', duration: 200 },
+              { value: '20px solid #597b64', duration: 0 },
+              { value: '0px solid #597b64', duration: 200 },
+            ],
+            easing: 'linear',
+            duration: 400,
+          }, 250)
+      }
+
+    </script>
 </body>
 </html>

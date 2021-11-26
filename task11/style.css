@@ -3,3 +3,121 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+body {
+  overflow: hidden;
+}
+
+.screen {
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+}
+
+.screen-1 {
+  transform: translateX(0);
+}
+
+.screen-2 {
+  transform: translateX(100vw);
+}
+
+.screen-3 {
+  z-index: -1;
+}
+
+.bubble {
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.overlay {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  background-color: transparent;
+  z-index: -2;
+}
+
+.layer {
+  position: absolute;
+  height: auto;
+  width: auto;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.layer-1 {
+  max-width: 660px;
+  max-height: 660px;
+}
+
+.layer-2 {
+  max-width: 500px;
+  max-height: 500px;
+}
+
+.layer-3 {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  top: 43px;
+  height: 725px;
+  width: 725px;
+  background-clip: content-box;
+  background-position-x: -140px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  left: 321px;
+  background-image: url("assets/layer-3.jpg");
+}
+
+.dialog {
+  width: 300px;
+  position: relative;
+  background-color: rgba(1, 106, 98, 0.7);
+  text-align: center;
+  line-height: 100%;
+  padding: 68px 0;
+  color: white;
+  font-size: 20px;
+  border-radius: 20px;
+}
+
+.dialog::after {
+  position: absolute;
+  content: " ";
+  height:  0;
+  width: 0;
+  border: 20px solid transparent;
+  border-top: 60px solid rgba(1, 106, 98, 0.7);
+}
+
+.firstDialog::after {
+  right: -30px;
+  bottom: -50px;
+  transform: rotate(-45deg);
+}
+
+.firstDialog {
+  left: 32%;
+  top: 11%;
+}
+
+.secondDialog::after {
+  left: -30px;
+  bottom: -50px;
+  transform: rotate(45deg);
+}
+
+.secondDialog {
+  left: 11%;
+  top: 43%;
+}

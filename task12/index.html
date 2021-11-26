@@ -9,5 +9,79 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <div class="header">
+            <a class="header__openFormButton">Open form</a>
+        </div>
+        <div id="successAlert" class="display-none">Успех</div>
+    </div>
+    <div class="overlay display-none">
+        <div class="form">
+            <div class="form__buttonWrapper">
+                <button class="form__closeFormButton">&times;</button>
+            </div>
+            <form class="form__content">
+                <div class="form__row">
+                    <label for="email">
+                        Почта
+                    </label>
+                    <input id="email" type="text" name="email" placeholder="example@mail.ru">
+                </div>
+                <div class="form__row">
+                    <label for="password">
+                        Пароль
+                    </label>
+                    <input id="password" type="password" name="password">
+                </div>
+                <input class="form__submit" type="submit" value="Отправить">
+            </form>
+        </div>
+    </div>
+    <script>
+      const overlay = document.querySelector('.overlay');
+      const form = document.querySelector('.form__content');
+
+      const formCloser = document.querySelector('.form__closeFormButton');
+      formCloser.addEventListener('click', () => {
+        overlay.classList.add('display-none');
+      })
+
+      const openFormButton = document.querySelector('.header__openFormButton');
+      openFormButton.addEventListener('click', () => {
+        overlay.classList.remove('display-none');
+      })
+
+      const emailRegExp = /^[-.\w]+@[\w-]+\.[\w]/;
+
+      const email = document.getElementById('email');
+      const password = document.getElementById('password');
+
+      function highlightInput(elem, flag) {
+          if (flag) {
+            elem.classList.remove('wrongData');
+          } else {
+            elem.classList.add('wrongData');
+          }
+      }
+
+      const successAlert = document.getElementById('successAlert');
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+
+        const emailCorrect = emailRegExp.test(formData.get('email').trim())
+        const passwordCorrect = formData.get('password').trim().length > 2;
+
+        highlightInput(email, emailCorrect);
+        highlightInput(password, passwordCorrect);
+
+        if (emailCorrect && passwordCorrect) {
+          overlay.classList.add('display-none');
+          successAlert.classList.remove('display-none')
+        }
+      })
+    </script>
 </body>
 </html>
